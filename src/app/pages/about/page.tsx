@@ -55,7 +55,7 @@ export default function page() {
   }, []);
 
   return (
-    <div>
+    <div className="w-full h-auto ">
       <div className="w-full h-auto ">
         <div>
           <Headers />

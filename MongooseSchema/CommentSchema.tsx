@@ -2,6 +2,7 @@ import { Schema, model, models, Document } from "mongoose";
 import mongoose from "mongoose";
 
 interface comment extends Document {
+  commentid: string;
   comment: string;
   image: string;
   name: string;
@@ -10,6 +11,7 @@ interface comment extends Document {
 
 const commentSchema = new Schema<comment>(
   {
+    commentid: { type: String, required: true },
     comment: { type: String, required: true },
     image: { type: String, required: true },
     name: { type: String, required: true },

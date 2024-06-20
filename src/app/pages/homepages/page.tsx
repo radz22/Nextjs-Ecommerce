@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Header from "@/app/components/Header";
-
+import Link from "next/link";
 import Footer from "@/app/components/Footer";
 
 interface ProductItem {
@@ -37,13 +37,13 @@ export default function page() {
   return (
     <div className="w-full h-auto">
       <div
-        className="relative bg-cover bg-center h-screen z-0"
+        className="relative bg-cover bg-center h-auto z-0"
         style={{
           backgroundImage:
             "url('https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/furniture-store-hero-bg.jpg')",
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50 h-screen"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-50 h-auto"></div>
         {/*  Header*/}
         <div className=" relative  z-50 bg-transparent]">
           <Header />
@@ -79,7 +79,7 @@ export default function page() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between mt-24">
+          <div className="flex items-center justify-between mt-20 py-3">
             <div>
               <a href="#new">
                 <p className="text-white text-[11px]">SCROLL DOWN</p>
@@ -214,35 +214,37 @@ export default function page() {
                     onMouseEnter={() => setHoveredItemId(item._id)}
                     onMouseLeave={() => setHoveredItemId(null)}
                   >
-                    <div
-                      className={`mt-16 py-2 px-10 ${
-                        hoveredItemId == item._id
-                          ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300"
-                          : "shadow shadow-[#ededed]  transition-transform duration-300"
-                      }`}
-                    >
-                      <div>
-                        <img
-                          src={item.image}
-                          className="w-[250px] h-[250px]  object-cover"
-                        />
-                      </div>
-                      <div className="flex items-center justify-center flex-col">
+                    <Link href={`/pages/product/${item._id}`}>
+                      <div
+                        className={`mt-16 py-2 px-10 ${
+                          hoveredItemId == item._id
+                            ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300"
+                            : "shadow shadow-[#ededed]  transition-transform duration-300"
+                        }`}
+                      >
                         <div>
-                          <p className="text-[11px] text-[#989898]">
-                            {item.category}
-                          </p>
+                          <img
+                            src={item.image}
+                            className="w-[250px] h-[250px]  object-cover"
+                          />
                         </div>
-                        <div className="mt-2">
-                          <p className="text-[#b98f28]">{item.name}</p>
-                        </div>
-                        <div>
-                          <p className="mt-2 text-[13px] text-[#595959]">
-                            PHP ${item.price}
-                          </p>
+                        <div className="flex items-center justify-center flex-col">
+                          <div>
+                            <p className="text-[11px] text-[#989898]">
+                              {item.category}
+                            </p>
+                          </div>
+                          <div className="mt-2">
+                            <p className="text-[#b98f28]">{item.name}</p>
+                          </div>
+                          <div>
+                            <p className="mt-2 text-[13px] text-[#595959]">
+                              PHP ${item.price}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
 
                     <div
                       className={`absolute inset-0 flex items-center justify-end  pr-4 opacity-0 top-0 mb-[200px]  ${
@@ -457,35 +459,38 @@ export default function page() {
                   onMouseEnter={() => setHoveredItemId(item._id)}
                   onMouseLeave={() => setHoveredItemId(null)}
                 >
-                  <div
-                    className={`mt-16 py-2 px-10 ${
-                      hoveredItemId == item._id
-                        ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300"
-                        : "shadow shadow-[#ededed]  transition-transform duration-300"
-                    }`}
-                  >
-                    <div>
-                      <img
-                        src={item.image}
-                        className="w-[250px] h-[250px]  object-cover"
-                      />
-                    </div>
-                    <div className="flex items-center justify-center flex-col">
+                  <Link href={`/pages/product/${item._id}`}>
+                    {" "}
+                    <div
+                      className={`mt-16 py-2 px-10 ${
+                        hoveredItemId == item._id
+                          ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300"
+                          : "shadow shadow-[#ededed]  transition-transform duration-300"
+                      }`}
+                    >
                       <div>
-                        <p className="text-[11px] text-[#989898]">
-                          {item.category}
-                        </p>
+                        <img
+                          src={item.image}
+                          className="w-[250px] h-[250px]  object-cover"
+                        />
                       </div>
-                      <div className="mt-2">
-                        <p className="text-[#b98f28]">{item.name}</p>
-                      </div>
-                      <div>
-                        <p className="mt-2 text-[13px] text-[#595959]">
-                          PHP ${item.price}
-                        </p>
+                      <div className="flex items-center justify-center flex-col">
+                        <div>
+                          <p className="text-[11px] text-[#989898]">
+                            {item.category}
+                          </p>
+                        </div>
+                        <div className="mt-2">
+                          <p className="text-[#b98f28]">{item.name}</p>
+                        </div>
+                        <div>
+                          <p className="mt-2 text-[13px] text-[#595959]">
+                            PHP ${item.price}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
 
                   <div
                     className={`absolute inset-0 flex items-center justify-end  pr-4 opacity-0 top-0 mb-[200px]  ${

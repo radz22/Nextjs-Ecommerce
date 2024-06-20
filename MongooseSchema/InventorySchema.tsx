@@ -1,14 +1,14 @@
 import { Schema, model, models, Document } from "mongoose";
 import mongoose from "mongoose";
 
-interface products extends Document {
+interface inventory extends Document {
   category: string;
   image: string;
   name: string;
   price: number;
 }
 
-const productSchema = new Schema<products>(
+const inventorySchema = new Schema<inventory>(
   {
     category: { type: String, required: true },
     image: { type: String, required: true },
@@ -20,6 +20,6 @@ const productSchema = new Schema<products>(
   }
 );
 
-const ProductModel =
-  mongoose.models.Product || mongoose.model("Product", productSchema);
-export default ProductModel;
+const inventoryModel =
+  mongoose.models.inventory || mongoose.model("inventory", inventorySchema);
+export default inventoryModel;

@@ -65,7 +65,10 @@ export default function Header() {
             </div>
 
             <div>
-              <h1 className="text-white text-base">Rooms</h1>
+              <Link href="/pages/room">
+                {" "}
+                <h1 className="text-white text-base">Rooms</h1>{" "}
+              </Link>
             </div>
 
             <div>

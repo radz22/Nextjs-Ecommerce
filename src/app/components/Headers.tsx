@@ -46,12 +46,15 @@ export default function Headers() {
     <div>
       <div className="border-b-[1px] border-[#cccccc] bg-white py-5 shadow-md	 shadow-[#f4f4f4]  transition-transform duration-300">
         <div className="flex items-center justify-between px-20">
-          <div>
-            <img
-              src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/kayuu-logo-dark.svg"
-              className="max-w-[140px] w-[140px] h-auto"
-            />
-          </div>
+          <Link href="/">
+            {" "}
+            <div>
+              <img
+                src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/kayuu-logo-dark.svg"
+                className="max-w-[140px] w-[140px] h-auto"
+              />
+            </div>
+          </Link>
           <div className="flex items-center justify-center gap-7 ">
             <div>
               <Link href="/">
@@ -67,7 +70,9 @@ export default function Headers() {
             </div>
 
             <div>
-              <h1 className="text-black  text-base">Rooms</h1>
+              <Link href="/pages/room">
+                <h1 className="text-black  text-base">Rooms</h1>
+              </Link>
             </div>
 
             <div>

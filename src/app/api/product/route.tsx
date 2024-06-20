@@ -1,5 +1,5 @@
 "use server";
-import ProductModel from "../../../../MongooseSchema/ProductSchema";
+import inventoryModel from "../../../../MongooseSchema/InventorySchema";
 import dbConnection from "../../../../dbsetup/mongodbsetup";
 
 import { NextResponse, NextRequest } from "next/server";
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
       name,
       price,
     };
-    const createProduct = await ProductModel.create(data);
+    const createProduct = await inventoryModel.create(data);
 
     if (!createProduct) {
       return NextResponse.json(
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   await dbConnection();
   try {
-    const findAllProudct = await ProductModel.find({});
+    const findAllProudct = await inventoryModel.find({});
 
     if (!findAllProudct) {
       return NextResponse.json({ message: "not get" }, { status: 401 });
