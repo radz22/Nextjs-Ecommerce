@@ -5,13 +5,23 @@ import { doLogout } from "../actions/Auth";
 import Link from "next/link";
 import { TEModal, TEModalDialog, TEModalContent } from "tw-elements-react";
 import { doSocialLogin } from "@/app/actions/Auth";
+
+interface OrderItem {
+  _id: string;
+  item: string;
+  user: string;
+  image: string;
+  price: number;
+  quantity: number;
+}
 export default function Headers() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [login, setLogin] = useState("");
   const [userNav, setUserNav] = useState(false);
   const [show, setShow] = useState<boolean>(false);
-
+  const [data, setData] = useState<OrderItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     // Get the value of the cookie named 'myCookie'
     const name = Cookies.get("name");
@@ -21,6 +31,29 @@ export default function Headers() {
     setName(name || "");
     setImage(img || "");
     setLogin(log || "");
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/order/getorder", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            user: name,
+          }),
+        });
+
+        const result: OrderItem[] = await res.json();
+        setData(result);
+      } catch (error: any) {
+        throw new Error(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    const intervalId = setInterval(fetchData, 1000); // Fetch every 1 second
+    return () => clearInterval(intervalId);
   }, []);
 
   const handleLogout = async () => {
@@ -63,7 +96,7 @@ export default function Headers() {
             </div>
 
             <div>
-              <Link href="/pages/about">
+              <Link href="/pages/product">
                 {" "}
                 <h1 className="text-black  text-base">Product</h1>
               </Link>
@@ -76,7 +109,10 @@ export default function Headers() {
             </div>
 
             <div>
-              <h1 className="text-black  text-base">About Us</h1>
+              <Link href="/pages/about">
+                {" "}
+                <h1 className="text-black  text-base">About Us</h1>
+              </Link>
             </div>
 
             <div>
@@ -87,25 +123,43 @@ export default function Headers() {
               <div>
                 {login == "true" ? (
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1em"
-                          height="1em"
-                          viewBox="0 0 24 24"
-                          className="text-[#EDB932] text-2xl"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M21.947 10.941a2.82 2.82 0 0 0-.52-1.09a2.77 2.77 0 0 0-.94-.76a2.47 2.47 0 0 0-.92-.25a7.46 7.46 0 0 0-2.19-4.62a7.6 7.6 0 0 0-10.74 0a7.46 7.46 0 0 0-2.19 4.62a2.47 2.47 0 0 0-.92.25a2.68 2.68 0 0 0-.94.76a2.74 2.74 0 0 0-.52 2.3l1.57 6.43a4.65 4.65 0 0 0 4.5 3.42h7.71a4.67 4.67 0 0 0 4.51-3.44l1.56-6.41c.1-.396.11-.81.03-1.21m-13.1 6.42a.75.75 0 0 1-1.5 0v-3.94a.75.75 0 1 1 1.5 0zm3.91 0a.75.75 0 1 1-1.5 0v-3.94a.75.75 0 0 1 1.5 0zm3.91 0a.75.75 0 1 1-1.5 0v-3.94a.75.75 0 0 1 1.5 0zm-10.71-8.54a6 6 0 0 1 1.74-3.54a6.11 6.11 0 0 1 8.62 0a6 6 0 0 1 1.74 3.54z"
-                          />
-                        </svg>
+                    <Link href="/pages/cart">
+                      <div className="flex items-center justify-center">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 24 24"
+                            className="text-[#EDB932] text-2xl"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M21.947 10.941a2.82 2.82 0 0 0-.52-1.09a2.77 2.77 0 0 0-.94-.76a2.47 2.47 0 0 0-.92-.25a7.46 7.46 0 0 0-2.19-4.62a7.6 7.6 0 0 0-10.74 0a7.46 7.46 0 0 0-2.19 4.62a2.47 2.47 0 0 0-.92.25a2.68 2.68 0 0 0-.94.76a2.74 2.74 0 0 0-.52 2.3l1.57 6.43a4.65 4.65 0 0 0 4.5 3.42h7.71a4.67 4.67 0 0 0 4.51-3.44l1.56-6.41c.1-.396.11-.81.03-1.21m-13.1 6.42a.75.75 0 0 1-1.5 0v-3.94a.75.75 0 1 1 1.5 0zm3.91 0a.75.75 0 1 1-1.5 0v-3.94a.75.75 0 0 1 1.5 0zm3.91 0a.75.75 0 1 1-1.5 0v-3.94a.75.75 0 0 1 1.5 0zm-10.71-8.54a6 6 0 0 1 1.74-3.54a6.11 6.11 0 0 1 8.62 0a6 6 0 0 1 1.74 3.54z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          {loading ? (
+                            <div className="w-full flex items-center justify-center h-auto">
+                              {" "}
+                              <div
+                                className="inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                                role="status"
+                              >
+                                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                                  Loading...
+                                </span>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="bg-[#EDB932] rounded-full	px-2 mb-4">
+                              <p>{data.length}</p>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div className="bg-[#EDB932] rounded-full	px-2 mb-4">
-                        <p>0</p>
-                      </div>
-                    </div>
+                    </Link>
                     <div
                       className="flex items-center justify-center gap-2 "
                       onClick={handleOpen}

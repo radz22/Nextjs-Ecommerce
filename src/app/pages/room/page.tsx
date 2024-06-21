@@ -61,11 +61,11 @@ export default function page() {
           <div className="relative">
             <img
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/living-room-img.jpg"
-              className="w-full h-[50vh]"
+              className="w-full h-[85vh] "
             />
           </div>
-          <div className="absolute top-28 right-40 w-[50%]">
-            <div className="bg-white py-10 px-10 h-[42vh]">
+          <div className="absolute top-36 right-40 w-[50%]">
+            <div className="bg-white py-10 px-10 h-auto">
               <div>
                 <h1 className="text-[35px] font-bold ">Living Room</h1>
               </div>
@@ -232,11 +232,11 @@ export default function page() {
           <div className="relative w-full">
             <img
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/bedroom-img.jpg"
-              className="w-full h-[50vh]"
+              className="w-full h-[85vh] "
             />
           </div>
-          <div className="absolute top-28 right-40 w-[50%]">
-            <div className="bg-white py-10 px-10 h-[42vh]">
+          <div className="absolute top-36  right-40 w-[50%]">
+            <div className="bg-white py-10 px-10">
               <div>
                 <h1 className="text-[35px] font-bold ">Bedroom</h1>
               </div>
@@ -403,11 +403,11 @@ export default function page() {
           <div className="relative w-full">
             <img
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/home-office-img.jpg"
-              className="w-full h-[50vh]"
+              className="w-full h-[85vh]"
             />
           </div>
-          <div className="absolute top-28 right-40 w-[50%]">
-            <div className="bg-white py-10 px-10 h-[42vh]">
+          <div className="absolute top-36  right-40 w-[50%]">
+            <div className="bg-white py-10 px-10 ">
               <div>
                 <h1 className="text-[35px] font-bold ">Home office</h1>
               </div>

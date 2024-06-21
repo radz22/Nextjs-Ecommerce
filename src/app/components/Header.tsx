@@ -5,13 +5,22 @@ import { doLogout } from "../actions/Auth";
 import Link from "next/link";
 import { TEModal, TEModalDialog, TEModalContent } from "tw-elements-react";
 import { doSocialLogin } from "@/app/actions/Auth";
+interface OrderItem {
+  _id: string;
+  item: string;
+  user: string;
+  image: string;
+  price: number;
+  quantity: number;
+}
 export default function Header() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [login, setLogin] = useState("");
   const [userNav, setUserNav] = useState(false);
   const [show, setShow] = useState<boolean>(false);
-
+  const [data, setData] = useState<OrderItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     // Get the value of the cookie named 'myCookie'
     const name = Cookies.get("name");
@@ -21,6 +30,29 @@ export default function Header() {
     setName(name || "");
     setImage(img || "");
     setLogin(log || "");
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/order/getorder", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            user: name,
+          }),
+        });
+
+        const result: OrderItem[] = await res.json();
+        setData(result);
+      } catch (error: any) {
+        throw new Error(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    const intervalId = setInterval(fetchData, 1000); // Fetch every 1 second
+    return () => clearInterval(intervalId);
   }, []);
 
   const handleLogout = async () => {
@@ -58,7 +90,7 @@ export default function Header() {
             </div>
 
             <div>
-              <Link href="/pages/about">
+              <Link href="/pages/product">
                 {" "}
                 <h1 className="text-white text-base">Product</h1>
               </Link>
@@ -72,7 +104,10 @@ export default function Header() {
             </div>
 
             <div>
-              <h1 className="text-white text-base">About Us</h1>
+              <Link href="/pages/about">
+                {" "}
+                <h1 className="text-white text-base">About Us</h1>{" "}
+              </Link>
             </div>
 
             <div>
@@ -98,8 +133,26 @@ export default function Header() {
                           />
                         </svg>
                       </div>
-                      <div className="bg-[#EDB932] rounded-full	px-2 mb-4">
-                        <p>0</p>
+                      <div>
+                        {loading ? (
+                          <div className="w-full flex items-center justify-center h-auto">
+                            {" "}
+                            <div
+                              className="inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                              role="status"
+                            >
+                              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                                Loading...
+                              </span>
+                            </div>
+                          </div>
+                        ) : (
+                          <Link href="/pages/cart">
+                            <div className="bg-[#EDB932] rounded-full	px-2 mb-4">
+                              <p>{data.length}</p>
+                            </div>
+                          </Link>
+                        )}
                       </div>
                     </div>
                     <div

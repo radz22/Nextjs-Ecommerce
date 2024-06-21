@@ -3,6 +3,8 @@ import Headers from "@/app/components/Headers";
 import Review from "@/app/components/review";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 interface ProductItem {
   _id: string;
@@ -13,10 +15,11 @@ interface ProductItem {
 }
 export default function page() {
   const { id } = useParams();
-
   const [data, setData] = useState<ProductItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [count, setCount] = useState<number>(1);
+  const [name, setName] = useState<string>("");
+  const [login, setLogin] = useState<string>("");
 
   const handleIncrement = () => {
     setCount((prev) => prev + 1);
@@ -28,6 +31,11 @@ export default function page() {
     }
   };
   useEffect(() => {
+    const name = Cookies.get("name");
+    const log = Cookies.get("login");
+
+    setName(name || "");
+    setLogin(log || "");
     const fetchData = async () => {
       try {
         const response = await fetch(`http://localhost:3000/api/product/${id}`);
@@ -45,6 +53,49 @@ export default function page() {
     fetchData();
   }, []);
 
+  const handleOrder = async () => {
+    if (login == "true") {
+      try {
+        const res = await fetch("http://localhost:3000/api/order", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            item: data?.name,
+            user: name,
+            image: data?.image,
+            price: data?.price,
+            quantity: count,
+          }),
+        });
+
+        if (res.ok) {
+          Swal.fire({
+            title: "Sucess Order",
+            width: 600,
+            padding: "3em",
+            color: "#716add",
+            background: "#fff url(/images/trees.png)",
+            backdrop: `
+              rgba(0,0,123,0.4)
+              url("https://media.tenor.com/xzjlrhYq_lQAAAAj/cat-nyan-cat.gif")
+              left top
+              no-repeat
+            `,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong pls login!",
+      });
+    }
+  };
   return (
     <div>
       <div className="w-full h-auto">
@@ -125,7 +176,10 @@ export default function page() {
                       </div>
                     </div>
                     <div>
-                      <button className="text-[12px] bg-[#EDB932] py-3 px-10 font-semibold hover:text-white">
+                      <button
+                        className="text-[12px] bg-[#EDB932] py-3 px-10 font-semibold hover:text-white"
+                        onClick={handleOrder}
+                      >
                         ADD TO CART
                       </button>
                     </div>
