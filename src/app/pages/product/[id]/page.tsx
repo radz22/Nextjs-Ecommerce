@@ -62,6 +62,7 @@ export default function page() {
             "Content-type": "application/json",
           },
           body: JSON.stringify({
+            productid: data?._id,
             item: data?.name,
             user: name,
             image: data?.image,

@@ -1,6 +1,7 @@
 import { Schema, model, models, Document } from "mongoose";
 import mongoose from "mongoose";
 interface order extends Document {
+  productid: string;
   item: string;
   user: string;
   image: string;
@@ -10,6 +11,7 @@ interface order extends Document {
 
 const orderSchema = new Schema<order>(
   {
+    productid: { type: String, required: true },
     item: { type: String, required: true },
     user: { type: String, required: true },
     image: { type: String, required: true },

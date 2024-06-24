@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import Headers from "@/app/components/Headers";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
+
 interface OrderItem {
+  productid: string;
   _id: string;
   item: string;
   user: string;
@@ -41,9 +44,34 @@ export default function page() {
     const intervalId = setInterval(fetchData, 1000); // Fetch every 1 second
     return () => clearInterval(intervalId);
   }, []);
+  const handleDeleteProduct = async (id: string) => {
+    try {
+      const res = await fetch("http://localhost:3000/api/order", {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
+      });
 
+      if (res.ok) {
+        toast.success("Successfully Deleted");
+      }
+
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
   return (
     <div className="w-full">
+      <div>
+        <Toaster position="top-center" reverseOrder={true} />
+      </div>
       <div>
         <Headers />
       </div>
@@ -51,12 +79,12 @@ export default function page() {
       <div className="mt-20 px-20 w-full">
         <div className="bg-white py-8 shadow-md shadow-[#f4f4f4]  transition-transform duration-300  h-auto px-5">
           <div>
-            <h1 className="text-[30px] font-bold">Cart</h1>
+            <h1 className="text-[30px] font-bold mb-10">Cart</h1>
           </div>
 
-          <div className="w-full items-center flex justify-center ">
-            <div className="w-[70%]">
-              <div className="w-full items-center flex justify-center gap-10 mt-10">
+          <div className="w-full flex gap-5">
+            <div className="w-[70%]  border-[1px] border-[#d8d8d8] ">
+              <div className="w-full items-center flex justify-center gap-10 py-5 bg-[#fcfcfc] ">
                 <div className="w-[20%]">
                   <h1 className="text-center text-[#6a6a6a] font-bold">
                     Image
@@ -74,12 +102,13 @@ export default function page() {
                 </div>
 
                 <div className="w-[20%]">
-                  <h1>Quantity</h1>
+                  <h1 className="text-[#6a6a6a] font-bold">Quantity</h1>
                 </div>
                 <div className="w-[20%]">
                   <h1 className="text-[#6a6a6a] font-bold">Subtotal</h1>
                 </div>
               </div>
+              <div className=" border-b-[2px] border-[#d8d8d8]  "></div>
               <div>
                 {loading ? (
                   <div className="w-full flex items-center justify-center h-[50vh]">
@@ -94,11 +123,14 @@ export default function page() {
                     </div>
                   </div>
                 ) : (
-                  <div>
+                  <div className="h-[45vh] overflow-y-scroll">
                     {data.map((item) => (
-                      <div className="w-full items-center flex justify-center gap-10 mt-10 ">
+                      <div className="w-full items-center flex justify-center gap-10 mt-10  border-b-[1px] border-[#d8d8d8]">
                         <div className="flex items-center justify-center gap-3 w-[20%]">
-                          <div>
+                          <div
+                            onClick={() => handleDeleteProduct(item._id)}
+                            className="bg-[#d8d8d8] px-2 py-2  rounded-full	cursor-pointer"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="1em"
@@ -112,7 +144,7 @@ export default function page() {
                               />
                             </svg>
                           </div>
-                          <Link href={`/pages/product/${item._id}`}>
+                          <Link href={`/pages/product/${item.productid}`}>
                             {" "}
                             <div>
                               <img
@@ -157,7 +189,49 @@ export default function page() {
                 )}
               </div>
             </div>
-            <div className="w-[30%]"></div>
+            <div className="w-[30%] ">
+              <div className="border-[1px] border-[#d8d8d8] ">
+                <div className="bg-[#fcfcfc] py-[17px] px-3">
+                  <h1 className="text-xl font-bold ">Cart</h1>
+                </div>
+                <div className=" border-b-[2px] border-[#d8d8d8]  "></div>
+
+                <div className="px-3 mt-5 w-full">
+                  <div className="flex gap-10  w-full">
+                    <div className="w-[30%]">
+                      <h1 className="text-[#6a6a6a] text-base font-bold ">
+                        Subtotal
+                      </h1>
+                    </div>
+                    <div>
+                      <p className="text-[#6a6a6a] text-base font-semibold">
+                        $1,348.50
+                      </p>
+                    </div>
+                  </div>
+                  <div className=" border-b-[2px] border-[#d8d8d8] mt-2  "></div>
+                  <div className="flex gap-10 mt-4  w-full">
+                    <div className="w-[30%]">
+                      <h1 className="text-[#6a6a6a] text-base font-bold ">
+                        Total
+                      </h1>
+                    </div>
+                    <div>
+                      <p className="text-[#6a6a6a] text-base font-semibold">
+                        $1,348.50
+                      </p>
+                    </div>
+                  </div>
+                  <div className=" border-b-[2px] border-[#d8d8d8] mt-2  "></div>
+
+                  <div className="mt-5 text-center py-5">
+                    <button className="text-xl bg-[#EDB932] py-5 w-full  hover:text-white">
+                      CHECK OUT
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

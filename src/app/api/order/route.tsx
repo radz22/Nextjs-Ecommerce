@@ -7,9 +7,11 @@ import { NextResponse, NextRequest } from "next/server";
 export async function POST(request: NextRequest) {
   await dbConnection();
   try {
-    const { item, user, image, price, quantity } = await request.json();
+    const { item, user, image, price, quantity, productid } =
+      await request.json();
 
     const data = {
+      productid,
       item,
       user,
       image,
@@ -29,6 +31,27 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { message: "Server Error / Backend Error" },
       { status: 400 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  await dbConnection();
+  try {
+    const { id } = await request.json();
+
+    const findAndDelete = await orderModel.findByIdAndDelete({ _id: id });
+    if (!findAndDelete) {
+      return NextResponse.json(
+        { message: "Product not delete" },
+        { status: 401 }
+      );
+    }
+    return NextResponse.json({ message: "Product  delete" }, { status: 200 });
+  } catch {
+    return NextResponse.json(
+      { message: "Server Error / Backend Error" },
+      { status: 500 }
     );
   }
 }

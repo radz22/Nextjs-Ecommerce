@@ -110,10 +110,6 @@ export default function Header() {
               </Link>
             </div>
 
-            <div>
-              <h1 className="text-white text-base">Contact Us</h1>
-            </div>
-
             <div className="relative">
               <div>
                 {login == "true" ? (
