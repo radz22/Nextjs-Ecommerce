@@ -5,6 +5,7 @@ import { doLogout } from "../actions/Auth";
 import Link from "next/link";
 import { TEModal, TEModalDialog, TEModalContent } from "tw-elements-react";
 import { doSocialLogin } from "@/app/actions/Auth";
+import axios from "axios";
 
 interface OrderItem {
   _id: string;
@@ -22,6 +23,8 @@ export default function Headers() {
   const [show, setShow] = useState<boolean>(false);
   const [data, setData] = useState<OrderItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [count, setCount] = useState<number | null>(null);
+
   useEffect(() => {
     // Get the value of the cookie named 'myCookie'
     const name = Cookies.get("name");
@@ -34,25 +37,23 @@ export default function Headers() {
 
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/order/getorder", {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
+        axios
+          .post("http://localhost:3000/api/order/getorder", {
             user: name,
-          }),
-        });
-
-        const result: OrderItem[] = await res.json();
-        setData(result);
-      } catch (error: any) {
-        throw new Error(error.message);
+          })
+          .then((res) => {
+            setCount(res.data.orderCount);
+            Cookies.set("ordercount", res.data.orderCount.toString());
+          })
+          .catch(() => {
+            console.log("error");
+          });
+      } catch {
       } finally {
         setLoading(false);
       }
     };
-    const intervalId = setInterval(fetchData, 1000); // Fetch every 1 second
+    const intervalId = setInterval(fetchData, 1000);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -74,6 +75,25 @@ export default function Headers() {
 
   const handleCloseModal = () => {
     setShow(false);
+  };
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/product/filter",
+        {
+          category: "",
+        }
+      );
+
+      if (response.status === 200) {
+        setData(response.data);
+      } else {
+        console.log("error");
+      }
+    } catch (err) {
+      console.log("error");
+    }
   };
   return (
     <div>
@@ -98,7 +118,9 @@ export default function Headers() {
             <div>
               <Link href="/pages/product">
                 {" "}
-                <h1 className="text-black  text-base">Product</h1>
+                <h1 className="text-black  text-base" onClick={fetchProducts}>
+                  Product
+                </h1>
               </Link>
             </div>
 
@@ -150,7 +172,7 @@ export default function Headers() {
                             </div>
                           ) : (
                             <div className="bg-[#EDB932] rounded-full	px-2 mb-4">
-                              <p>{data.length}</p>
+                              <p>{count}</p>
                             </div>
                           )}
                         </div>

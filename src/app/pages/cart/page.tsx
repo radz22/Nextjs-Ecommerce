@@ -4,6 +4,8 @@ import Headers from "@/app/components/Headers";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 interface OrderItem {
   productid: string;
@@ -14,36 +16,56 @@ interface OrderItem {
   price: number;
   quantity: number;
 }
+
+interface total {
+  _id: string | null;
+  total_all_prices: number;
+}
 export default function page() {
   const [data, setData] = useState<OrderItem[]>([]);
-
+  const [total, setTotal] = useState<total[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const name = Cookies.get("name");
 
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/order/getorder", {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
+        axios
+          .post("http://localhost:3000/api/order/getorder", {
             user: name,
-          }),
-        });
-
-        const result: OrderItem[] = await res.json();
-        setData(result);
-      } catch (error: any) {
-        throw new Error(error.message);
+          })
+          .then((res) => {
+            setData(res.data.order);
+          })
+          .catch(() => {
+            console.log("error");
+          });
+      } catch {
       } finally {
         setLoading(false);
       }
     };
-    const intervalId = setInterval(fetchData, 1000); // Fetch every 1 second
-    return () => clearInterval(intervalId);
+
+    const fetchTotal = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/order/aggregate",
+          {
+            user: name,
+          }
+        );
+        setTotal(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    setInterval(() => {
+      fetchData();
+      fetchTotal();
+    }, 1000);
   }, []);
+
   const handleDeleteProduct = async (id: string) => {
     try {
       const res = await fetch("http://localhost:3000/api/order", {
@@ -67,6 +89,35 @@ export default function page() {
       throw new Error(error.message);
     }
   };
+
+  const handleIncrement = async (id: string) => {
+    try {
+      await axios.put(`http://localhost:3000/api/order/increment/${id}`, {
+        quantity: 1,
+      });
+    } catch {
+      console.log("error");
+    }
+  };
+
+  const handleDecrement = async (id: string, count: number) => {
+    if (count !== 1) {
+      try {
+        await axios.put(`http://localhost:3000/api/order/decrement/${id}`, {
+          quantity: 1,
+        });
+      } catch {
+        console.log("error");
+      }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
+
   return (
     <div className="w-full">
       <div>
@@ -166,13 +217,21 @@ export default function page() {
 
                         <div className=" w-[20%]">
                           <div className="flex items-center justify-center">
-                            <div className="border border-[#dadada] px-4 py-2 cursor-pointer">
+                            <div
+                              className="border border-[#dadada] px-4 py-2 cursor-pointer"
+                              onClick={() =>
+                                handleDecrement(item._id, item.quantity)
+                              }
+                            >
                               <p>-</p>
                             </div>
                             <div className="border border-black py-2 cursor-pointer px-4 items-center">
                               <p>{item.quantity}</p>
                             </div>
-                            <div className="border border-[#dadada] px-4 py-2 cursor-pointer">
+                            <div
+                              className="border border-[#dadada] px-4 py-2 cursor-pointer"
+                              onClick={() => handleIncrement(item._id)}
+                            >
                               <p>+</p>
                             </div>
                           </div>
@@ -204,9 +263,23 @@ export default function page() {
                       </h1>
                     </div>
                     <div>
-                      <p className="text-[#6a6a6a] text-base font-semibold">
-                        $1,348.50
-                      </p>
+                      {total.length == 0 ? (
+                        <div>
+                          <p className="text-[#6a6a6a] text-base font-semibold">
+                            PHP 0
+                          </p>
+                        </div>
+                      ) : (
+                        <div>
+                          {total.map((item, index) => (
+                            <div>
+                              <p className="text-[#6a6a6a] text-base font-semibold">
+                                PHP {item.total_all_prices}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className=" border-b-[2px] border-[#d8d8d8] mt-2  "></div>
@@ -217,9 +290,23 @@ export default function page() {
                       </h1>
                     </div>
                     <div>
-                      <p className="text-[#6a6a6a] text-base font-semibold">
-                        $1,348.50
-                      </p>
+                      {total.length == 0 ? (
+                        <div>
+                          <p className="text-[#6a6a6a] text-base font-semibold">
+                            PHP 0
+                          </p>
+                        </div>
+                      ) : (
+                        <div>
+                          {total.map((item, index) => (
+                            <div>
+                              <p className="text-[#6a6a6a] text-base font-semibold">
+                                PHP {item.total_all_prices}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className=" border-b-[2px] border-[#d8d8d8] mt-2  "></div>

@@ -206,40 +206,42 @@ export default function page() {
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-4	 place-items-center w-full">
+              <div className="grid grid-cols-4	 place-items-center w-full]">
                 {data.map((item, index) => (
                   <div
                     key={index}
-                    className="relative "
+                    className="relative w-[90%] "
                     onMouseEnter={() => setHoveredItemId(item._id)}
                     onMouseLeave={() => setHoveredItemId(null)}
                   >
                     <Link href={`/pages/product/${item._id}`}>
                       <div
-                        className={`mt-16 py-2 px-10 ${
+                        className={`mt-16 py-2  px-5  h-[420px] ${
                           hoveredItemId == item._id
-                            ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300"
+                            ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300 h-auto"
                             : "shadow shadow-[#ededed]  transition-transform duration-300"
                         }`}
                       >
-                        <div>
+                        <div className="w-full  flex items-center justify-center">
                           <img
                             src={item.image}
                             className="w-[250px] h-[250px]  object-cover"
                           />
                         </div>
-                        <div className="flex items-center justify-center flex-col">
+                        <div className="flex items-center justify-center flex-col w-full mt-3">
                           <div>
                             <p className="text-[11px] text-[#989898]">
                               {item.category}
                             </p>
                           </div>
-                          <div className="mt-2">
-                            <p className="text-[#b98f28]">{item.name}</p>
+                          <div>
+                            <p className="text-[#b98f28] text-center w-full">
+                              {item.name}
+                            </p>
                           </div>
                           <div>
                             <p className="mt-2 text-[13px] text-[#595959]">
-                              PHP ${item.price}
+                              PHP {item.price}
                             </p>
                           </div>
                         </div>
@@ -451,41 +453,42 @@ export default function page() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-4	 place-items-center w-full">
+            <div className="grid grid-cols-4	 place-items-center w-full]">
               {data.map((item, index) => (
                 <div
                   key={index}
-                  className="relative "
+                  className="relative w-[90%] "
                   onMouseEnter={() => setHoveredItemId(item._id)}
                   onMouseLeave={() => setHoveredItemId(null)}
                 >
                   <Link href={`/pages/product/${item._id}`}>
-                    {" "}
                     <div
-                      className={`mt-16 py-2 px-10 ${
+                      className={`mt-16 py-2  px-5  h-[420px] ${
                         hoveredItemId == item._id
-                          ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300"
+                          ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300 h-auto"
                           : "shadow shadow-[#ededed]  transition-transform duration-300"
                       }`}
                     >
-                      <div>
+                      <div className="w-full  flex items-center justify-center">
                         <img
                           src={item.image}
                           className="w-[250px] h-[250px]  object-cover"
                         />
                       </div>
-                      <div className="flex items-center justify-center flex-col">
+                      <div className="flex items-center justify-center flex-col w-full mt-3">
                         <div>
                           <p className="text-[11px] text-[#989898]">
                             {item.category}
                           </p>
                         </div>
-                        <div className="mt-2">
-                          <p className="text-[#b98f28]">{item.name}</p>
+                        <div>
+                          <p className="text-[#b98f28] text-center w-full">
+                            {item.name}
+                          </p>
                         </div>
                         <div>
                           <p className="mt-2 text-[13px] text-[#595959]">
-                            PHP ${item.price}
+                            PHP {item.price}
                           </p>
                         </div>
                       </div>

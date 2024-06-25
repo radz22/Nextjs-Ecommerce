@@ -12,7 +12,11 @@ export async function POST(request: NextRequest) {
     if (!findOrderUser) {
       return NextResponse.json({ message: "order not found" }, { status: 401 });
     }
-    return NextResponse.json(findOrderUser, { status: 200 });
+
+    return NextResponse.json(
+      { order: findOrderUser, orderCount: findOrderUser.length },
+      { status: 200 }
+    );
   } catch {
     return NextResponse.json(
       { message: "Server Error / Backend Error" },
