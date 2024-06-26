@@ -6,6 +6,7 @@ import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { loadStripe } from "@stripe/stripe-js";
 
 interface OrderItem {
   productid: string;
@@ -118,6 +119,19 @@ export default function page() {
     }
   };
 
+  const handleMakePayment = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51PVrHLEpyR2Qvynp3EDO4yIjoBpcXxlq7nRXEm2FLs0bVJC3ragJXXBmj3ANR2wmgeVVA5S45CA64pLx6Bf2cPBr00kU8HUGpQ"
+    );
+
+    axios
+      .post("http://localhost:3000/api/create-checkout-session", {
+        product: data,
+      })
+      .then((res) => {
+        stripe?.redirectToCheckout({ sessionId: res.data });
+      });
+  };
   return (
     <div className="w-full">
       <div>
@@ -312,7 +326,10 @@ export default function page() {
                   <div className=" border-b-[2px] border-[#d8d8d8] mt-2  "></div>
 
                   <div className="mt-5 text-center py-5">
-                    <button className="text-xl bg-[#EDB932] py-5 w-full  hover:text-white">
+                    <button
+                      className="text-xl bg-[#EDB932] py-5 w-full  hover:text-white"
+                      onClick={handleMakePayment}
+                    >
                       CHECK OUT
                     </button>
                   </div>
