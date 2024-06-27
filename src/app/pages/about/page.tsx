@@ -33,7 +33,7 @@ export default function page() {
         <div className="w-[50%]  gap-5">
           <div className="w-[80%]">
             <img
-              src="https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/284896620_3162145590780591_8300955278352951487_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEJYyLAxZMUGfl6UpTvMw_RHkztEsCWBsoeTO0SwJYGyinXIddt_UxSeVwGzzm2y2skPC34gFb_DRjXs-WEksnr&_nc_ohc=mKuXywv-qV0Q7kNvgFYvV96&_nc_ht=scontent.fmnl17-4.fna&oh=00_AYBhsCkHIiKjDJRgE_RnS3zHRE7bu-BuAxpGdCLI1byWzQ&oe=6679EF83"
+              src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/284896620_3162145590780591_8300955278352951487_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeEJYyLAxZMUGfl6UpTvMw_RHkztEsCWBsoeTO0SwJYGyinXIddt_UxSeVwGzzm2y2skPC34gFb_DRjXs-WEksnr&_nc_ohc=K--0Tk08fIMQ7kNvgFRqmT4&_nc_ht=scontent.fmnl17-1.fna&oh=00_AYCfuLbnD-KUteaMAcdi-6NGm8NhKhJJ0ksTvU8m7deQvw&oe=66836243"
               className="h-[650px] w-full"
             />
           </div>

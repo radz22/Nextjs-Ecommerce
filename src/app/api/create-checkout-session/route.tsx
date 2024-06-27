@@ -1,5 +1,4 @@
 "use server";
-import inventoryModel from "../../../../MongooseSchema/InventorySchema";
 import dbConnection from "../../../../dbsetup/mongodbsetup";
 import { NextResponse, NextRequest } from "next/server";
 import stripe from "stripe";

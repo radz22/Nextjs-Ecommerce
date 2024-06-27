@@ -31,6 +31,7 @@ export default function page() {
   const [dropDown, setDropDown] = useState<string>("Default sorting");
   const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
   const [data, setData] = useState<ProductItem[]>([]);
+
   const [loading, setLoading] = useState<boolean>(true);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [limit, setLimit] = useState<number>(8);
@@ -61,6 +62,7 @@ export default function page() {
       throw new Error(error.message);
     }
   };
+
   const fetchProductsByCategory = async (category: string) => {
     setLoading(true);
     try {
