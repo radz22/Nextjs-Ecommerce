@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Headers from "@/app/components/Headers";
 import Link from "next/link";
 import Footer from "@/app/components/Footer";
+import Image from "next/image";
 
 interface ProductItem {
   _id: string;
@@ -59,8 +60,11 @@ export default function Page() {
 
         <div className="relative w-full">
           <div className="relative">
-            <img
+            <Image
               src="https://pcsite.co.uk/wp-content/uploads/2023/12/how-much-does-a-gaming-pc-cost.jpg"
+              alt="my-image"
+              width={1000} // Add the appropriate width here
+              height={1000}
               className="w-full h-[85vh] "
             />
           </div>
@@ -167,9 +171,12 @@ export default function Page() {
                           }`}
                         >
                           <div className="w-full  flex items-center justify-center">
-                            <img
+                            <Image
                               src={item.image}
-                              className="w-[250px] h-[250px]  object-cover"
+                              alt="my-image"
+                              width={250} // Add the appropriate width here
+                              height={250}
+                              className="object-cover"
                             />
                           </div>
                           <div className="flex items-center justify-center flex-col w-full mt-3">
@@ -238,8 +245,11 @@ export default function Page() {
 
         <div className="relative mt-20 w-full">
           <div className="relative w-full">
-            <img
+            <Image
               src="https://images.summitmedia-digital.com/spotph/images/2021/12/02/best-gadgets-of-2021-640-1638428333.jpg"
+              alt="my-image"
+              width={1000} // Add the appropriate width here
+              height={1000}
               className="w-full h-[85vh] "
             />
           </div>
@@ -346,9 +356,12 @@ export default function Page() {
                           }`}
                         >
                           <div className="w-full  flex items-center justify-center">
-                            <img
+                            <Image
                               src={item.image}
-                              className="w-[250px] h-[250px]  object-cover"
+                              alt="my-image"
+                              width={250} // Add the appropriate width here
+                              height={250}
+                              className="  object-cover"
                             />
                           </div>
                           <div className="flex items-center justify-center flex-col w-full mt-3">
@@ -417,8 +430,11 @@ export default function Page() {
 
         <div className="relative mt-20 w-full">
           <div className="relative w-full">
-            <img
+            <Image
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/home-office-img.jpg"
+              alt="my-image"
+              width={1000} // Add the appropriate width here
+              height={1000}
               className="w-full h-[85vh]"
             />
           </div>
@@ -525,9 +541,12 @@ export default function Page() {
                           }`}
                         >
                           <div className="w-full  flex items-center justify-center">
-                            <img
+                            <Image
                               src={item.image}
-                              className="w-[250px] h-[250px]  object-cover"
+                              alt="my-image"
+                              width={250} // Add the appropriate width here
+                              height={250}
+                              className=" object-cover"
                             />
                           </div>
                           <div className="flex items-center justify-center flex-col w-full mt-3">
@@ -596,8 +615,11 @@ export default function Page() {
 
         <div className="w-full h-[50vh] flex items-center justify-center gap-10 mt-32 bg-white shadow-xl shadow-[#f2f2f2]  transition-transform duration-300 ">
           <div className="w-[50%] h-full">
-            <img
+            <Image
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/newsletter-banner-img.jpg"
+              alt="my-image"
+              width={1000} // Add the appropriate width here
+              height={1000}
               className="w-full h-full"
             />
           </div>

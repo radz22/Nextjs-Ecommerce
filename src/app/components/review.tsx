@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Rating from "@mui/material/Rating";
 import Cookies from "js-cookie";
 import toast, { Toaster } from "react-hot-toast";
+import Image from "next/image";
 
 interface CommentItem {
   _id: string;
@@ -61,7 +62,7 @@ export default function Review({ ID }: ReviewProps) {
     setLogin(log || "");
     fetchData();
     return () => clearInterval(intervalId);
-  }, []);
+  }, [ID]);
 
   const handleChange = (
     event: React.ChangeEvent<{}>,
@@ -145,10 +146,12 @@ export default function Review({ ID }: ReviewProps) {
               >
                 <div>
                   <div>
-                    {" "}
-                    <img
+                    <Image
                       src={item.image}
-                      className="w-[60px] h-[60px] rounded-full	"
+                      alt="my-image"
+                      width={60} // Add the appropriate width here
+                      height={60}
+                      className=" rounded-full	"
                     />
                   </div>
                 </div>

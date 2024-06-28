@@ -4,6 +4,7 @@ import Header from "@/app/components/Header";
 import Link from "next/link";
 import Footer from "@/app/components/Footer";
 import axios from "axios";
+import Image from "next/image";
 
 interface ProductItem {
   _id: string;
@@ -21,8 +22,8 @@ export default function Page() {
   const [totalProduct, setTotalProduct] = useState<number>();
   const [productFilter, setProductFilter] = useState<ProductItem[]>([]);
   useEffect(() => {
-    fetchData();
     fetch();
+    fetchData();
   }, [limit, offset]);
   const fetch = async () => {
     try {
@@ -184,9 +185,11 @@ export default function Page() {
         <div className="mt-36 px-20">
           <div className="flex justify-center w-full gap-10">
             <div className="w-6/12	flex items-center justify-center">
-              <img
+              <Image
                 src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/new-collection-furniture-img.jpg"
-                className="h-[390px] w-[85%]"
+                alt="my-image"
+                width={800}
+                height={390}
               />
             </div>
 
@@ -252,9 +255,12 @@ export default function Page() {
                           }`}
                         >
                           <div className="w-full  flex items-center justify-center">
-                            <img
+                            <Image
                               src={item.image}
-                              className="w-[250px] h-[250px]  object-cover"
+                              alt="my-image"
+                              width={250}
+                              height={250}
+                              className=" object-cover"
                             />
                           </div>
                           <div className="flex items-center justify-center flex-col w-full mt-3">
@@ -326,9 +332,17 @@ export default function Page() {
       <div className="w-full mt-24 grid-cols-4	grid place-items-center">
         <div className="relative w-full  ">
           <div className="relative">
-            <img
+            {/* <img
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/living-room-bg.jpg"
               className="w-full h-[450px] brightness-50						"
+            /> */}
+
+            <Image
+              src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/living-room-bg.jpg"
+              alt="image"
+              height={1000}
+              width={1000}
+              className=" brightness-50	 w-full h-[450px]"
             />
           </div>
           <div className="absolute bottom-10 left-10">
@@ -357,9 +371,12 @@ export default function Page() {
         </div>
         <div className="relative w-full  ">
           <div className="relative">
-            <img
+            <Image
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/bedroom-bg.jpg"
-              className="w-full h-[450px] brightness-50						"
+              alt="image"
+              height={1000}
+              width={1000}
+              className=" brightness-50	 w-full h-[450px]"
             />
           </div>
           <div className="absolute bottom-10 left-10">
@@ -389,9 +406,12 @@ export default function Page() {
 
         <div className="relative w-full  ">
           <div className="relative">
-            <img
+            <Image
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/kitchen-bg.jpg"
-              className="w-full h-[450px] brightness-50						"
+              alt="image"
+              height={1000}
+              width={1000}
+              className=" brightness-50	 w-full h-[450px]"
             />
           </div>
           <div className="absolute bottom-10 left-10">
@@ -420,9 +440,12 @@ export default function Page() {
         </div>
         <div className="relative w-full  ">
           <div className="relative">
-            <img
+            <Image
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/bath-room-bg.jpg"
-              className="w-full h-[450px] brightness-50						"
+              alt="image"
+              height={1000}
+              width={1000}
+              className=" brightness-50	 w-full h-[450px]"
             />
           </div>
           <div className="absolute bottom-10 left-10">
@@ -504,8 +527,11 @@ export default function Page() {
                         }`}
                       >
                         <div className="w-full  flex items-center justify-center">
-                          <img
+                          <Image
                             src={item.image}
+                            alt="my-image"
+                            width={1000} // Add the appropriate width here
+                            height={1000}
                             className="w-[250px] h-[250px]  object-cover"
                           />
                         </div>
@@ -636,8 +662,11 @@ export default function Page() {
 
       <div className="w-full  mt-44 relative ">
         <div className="flex items-center justify-end relative">
-          <img
+          <Image
             src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/promo-banner-img.jpg"
+            alt="my-image"
+            width={1000} // Add the appropriate width here
+            height={1000}
             className="h-[470px] w-[70%]"
           />
         </div>
@@ -681,9 +710,11 @@ export default function Page() {
         <div className="grid-cols-4	 grid place-content-center gap-4 mt-10">
           <div>
             <div>
-              <img
+              <Image
                 src="https://websitedemos.net/blingg-jewelry-store-04/wp-content/uploads/sites/1119/2022/08/icon-04.png"
-                className="w-[120px] h-[90px]"
+                alt="my-image"
+                width={120} // Add the appropriate width here
+                height={90}
               />
             </div>
             <div className="mt-3">
@@ -701,9 +732,11 @@ export default function Page() {
 
           <div>
             <div>
-              <img
+              <Image
                 src="https://websitedemos.net/blingg-jewelry-store-04/wp-content/uploads/sites/1119/2022/08/icon-01.png"
-                className="w-[120px] h-[90px]"
+                alt="my-image"
+                width={120} // Add the appropriate width here
+                height={90}
               />
             </div>
             <div className="mt-3">
@@ -721,9 +754,11 @@ export default function Page() {
 
           <div>
             <div>
-              <img
+              <Image
                 src="https://websitedemos.net/blingg-jewelry-store-04/wp-content/uploads/sites/1119/2022/08/icon-02.png"
-                className="w-[120px] h-[90px]"
+                alt="my-image"
+                width={120} // Add the appropriate width here
+                height={90}
               />
             </div>
             <div className="mt-3">
@@ -741,9 +776,11 @@ export default function Page() {
 
           <div>
             <div>
-              <img
+              <Image
                 src="https://websitedemos.net/blingg-jewelry-store-04/wp-content/uploads/sites/1119/2022/08/icon-03.png"
-                className="w-[120px] h-[90px]"
+                alt="my-image"
+                width={120} // Add the appropriate width here
+                height={90}
               />
             </div>
             <div className="mt-3">
@@ -765,8 +802,11 @@ export default function Page() {
 
       <div className="w-full h-[50vh] flex items-center justify-center gap-10 mt-32 bg-white shadow-xl shadow-[#f2f2f2]  transition-transform duration-300 ">
         <div className="w-[50%] h-full">
-          <img
+          <Image
             src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/newsletter-banner-img.jpg"
+            alt="my-image"
+            width={1000} // Add the appropriate width here
+            height={1000}
             className="w-full h-full"
           />
         </div>

@@ -1,6 +1,12 @@
+"use client";
 import React from "react";
 import Headers from "@/app/components/Headers";
 import Footer from "@/app/components/Footer";
+import Image from "next/image";
+import about1 from "../../images/about1.jpg";
+import about2 from "../../images/about2.jpg";
+import about3 from "../../images/about3.jpg";
+
 export default function Page() {
   return (
     <div className="w-full h-auto">
@@ -24,18 +30,12 @@ export default function Page() {
       </div>
       <div className="w-full  flex items-center justify-center">
         <div className="w-[50%]  flex items-center justify-center mt-[200px]">
-          <img
-            src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/furniture-store-about-product-img.jpg"
-            className="w-[70%] "
-          />
+          <Image src={about1} alt="my-image" className="w-[70%]" />
         </div>
 
         <div className="w-[50%]  gap-5">
           <div className="w-[80%]">
-            <img
-              src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/284896620_3162145590780591_8300955278352951487_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeEJYyLAxZMUGfl6UpTvMw_RHkztEsCWBsoeTO0SwJYGyinXIddt_UxSeVwGzzm2y2skPC34gFb_DRjXs-WEksnr&_nc_ohc=K--0Tk08fIMQ7kNvgFRqmT4&_nc_ht=scontent.fmnl17-1.fna&oh=00_AYCfuLbnD-KUteaMAcdi-6NGm8NhKhJJ0ksTvU8m7deQvw&oe=66836243"
-              className="h-[650px] w-full"
-            />
+            <Image src={about2} alt="my-image" className="h-[650px] w-full" />
           </div>
           <div className="w-[80%] mt-10   	">
             <p className="text-[#6a6a6a] leading-8	 tracking-wide">
@@ -166,7 +166,7 @@ export default function Page() {
         </div>
         <div className="w-[50%]">
           <div>
-            <img src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/furniture-store-about-store-img.jpg" />
+            <Image src={about3} alt="my-image" />
           </div>
         </div>
       </div>

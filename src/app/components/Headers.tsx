@@ -6,6 +6,8 @@ import Link from "next/link";
 import { TEModal, TEModalDialog, TEModalContent } from "tw-elements-react";
 import { doSocialLogin } from "@/app/actions/Auth";
 import axios from "axios";
+import samsungbg from "../images/Samsung-Sale.jpg";
+import Image from "next/image";
 
 interface OrderItem {
   _id: string;
@@ -102,9 +104,11 @@ export default function Headers() {
           <Link href="/">
             {" "}
             <div>
-              <img
+              <Image
                 src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/kayuu-logo-dark.svg"
-                className="max-w-[140px] w-[140px] h-auto"
+                alt="my-image"
+                width={140}
+                height={140}
               />
             </div>
           </Link>
@@ -183,7 +187,13 @@ export default function Headers() {
                       onClick={handleOpen}
                     >
                       <div>
-                        <img src={image} className="w-6	 h-6 rounded-full		" />
+                        {/* <img src={image} className="w-6	 h-6 rounded-full		" /> */}
+                        <Image
+                          src={image}
+                          alt="my-image"
+                          width={24} // Add the appropriate width here
+                          height={24}
+                        />
                       </div>
                       <div>
                         {" "}
@@ -348,10 +358,13 @@ export default function Headers() {
                       </p>
                     </div>
                   </div>
-                  <div className="w-2/4	">
-                    <img
-                      src="https://lifestylebucket.com/wp-content/uploads/2023/06/Samsung-Sale.jpg"
-                      className="h-[410px] w-full	"
+                  <div className="w-2/4	h-full">
+                    <Image
+                      src={samsungbg}
+                      alt="my-image"
+                      width={1000}
+                      height={1000}
+                      className="w-full h-full"
                     />
                   </div>
                 </div>

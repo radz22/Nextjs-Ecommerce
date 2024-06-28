@@ -5,7 +5,8 @@ import { doLogout } from "../actions/Auth";
 import Link from "next/link";
 import { TEModal, TEModalDialog, TEModalContent } from "tw-elements-react";
 import { doSocialLogin } from "@/app/actions/Auth";
-import axios from "axios";
+import Image from "next/image";
+import samsungbg from "../images/Samsung-Sale.jpg";
 interface OrderItem {
   _id: string;
   item: string;
@@ -61,12 +62,17 @@ export default function Header() {
     <div>
       <div className="border-b-[1px] border-[#777676] py-5">
         <div className="flex items-center justify-between px-20">
-          <div>
-            <img
-              src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/kayuu-logo-white.svg"
-              className="max-w-[140px] w-[140px] h-auto"
-            />
-          </div>
+          <Link href="/">
+            <div>
+              <Image
+                src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/kayuu-logo-white.svg"
+                alt="my-image"
+                width={140}
+                height={140}
+              />
+            </div>{" "}
+          </Link>
+
           <div className="flex items-center justify-center gap-7 ">
             <div>
               <h1 className="text-white text-base">Home</h1>
@@ -125,7 +131,14 @@ export default function Header() {
                       onClick={handleOpen}
                     >
                       <div>
-                        <img src={image} className="w-6	 h-6 rounded-full		" />
+                        {/* <img src={image} className="w-6	 h-6 rounded-full		" /> */}
+
+                        <Image
+                          src={image}
+                          alt="my-image"
+                          width={24} // Add the appropriate width here
+                          height={24}
+                        />
                       </div>
                       <div>
                         {" "}
@@ -290,10 +303,11 @@ export default function Header() {
                       </p>
                     </div>
                   </div>
-                  <div className="w-2/4	">
-                    <img
-                      src="https://lifestylebucket.com/wp-content/uploads/2023/06/Samsung-Sale.jpg"
-                      className="h-[410px] w-full	"
+                  <div className="w-2/4 h-auto	">
+                    <Image
+                      src={samsungbg}
+                      alt="my-image"
+                      className="w-full h-fit"
                     />
                   </div>
                 </div>

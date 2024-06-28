@@ -6,6 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import React from "react";
+import Image from "next/image";
 
 import {
   TEDropdown,
@@ -221,9 +222,11 @@ export default function Page() {
                               }`}
                             >
                               <div className="w-full  flex items-center justify-center">
-                                <img
+                                <Image
                                   src={item.image}
-                                  className="w-[250px] h-[250px]  object-cover"
+                                  alt="my-image"
+                                  width={250} // Add the appropriate width here
+                                  height={250}
                                 />
                               </div>
                               <div className="flex items-center justify-center flex-col w-full mt-3">
@@ -475,89 +478,105 @@ export default function Page() {
                         <p>(0)</p>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between mt-2">
+                    <div
+                      className="flex items-center justify-between mt-2"
+                      onClick={() => {
+                        handleFilter("Bath Room");
+                        setShowModal(false);
+                      }}
+                    >
                       <div>
-                        <h1>Bathroom</h1>
+                        <h1 className="cursor-pointer">Bathroom</h1>
                       </div>
                       <div>
                         <p>(0)</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between mt-2">
+                    <div
+                      className="flex items-center justify-between mt-2"
+                      onClick={() => {
+                        handleFilter("Bed Room");
+                        setShowModal(false);
+                      }}
+                    >
                       <div>
-                        <h1>Bedroom</h1>
+                        <h1 className="cursor-pointer">Bedroom</h1>
                       </div>
                       <div>
                         <p>(0)</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between mt-2">
+                    <div
+                      className="flex items-center justify-between mt-2"
+                      onClick={() => {
+                        handleFilter("Cabinet");
+                        setShowModal(false);
+                      }}
+                    >
                       <div>
-                        <h1>Cabinet</h1>
+                        <h1 className="cursor-pointer">Cabinet</h1>
                       </div>
                       <div>
                         <p>(0)</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between mt-2">
+                    <div
+                      className="flex items-center justify-between mt-2"
+                      onClick={() => {
+                        handleFilter("Chair");
+                        setShowModal(false);
+                      }}
+                    >
                       <div>
-                        <h1>Chair</h1>
+                        <h1 className="cursor-pointer">Chair</h1>
                       </div>
                       <div>
                         <p>(0)</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between mt-2">
+                    <div
+                      className="flex items-center justify-between mt-2"
+                      onClick={() => {
+                        handleFilter("Home Office");
+                        setShowModal(false);
+                      }}
+                    >
                       <div>
-                        <h1>Home Office</h1>
+                        <h1 className="cursor-pointer">Home Office</h1>
                       </div>
                       <div>
                         <p>(0)</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between mt-2">
+                    <div
+                      className="flex items-center justify-between mt-2"
+                      onClick={() => {
+                        handleFilter("Kitchen");
+                        setShowModal(false);
+                      }}
+                    >
                       <div>
-                        <h1>Kitchen</h1>
+                        <h1 className="cursor-pointer">Kitchen</h1>
                       </div>
                       <div>
                         <p>(0)</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between mt-2">
+                    <div
+                      className="flex items-center justify-between mt-2"
+                      onClick={() => {
+                        handleFilter("Living Room");
+                        setShowModal(false);
+                      }}
+                    >
                       <div>
-                        <h1>Living Room</h1>
-                      </div>
-                      <div>
-                        <p>(0)</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between mt-2">
-                      <div>
-                        <h1>Stool</h1>
-                      </div>
-                      <div>
-                        <p>(0)</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between mt-2">
-                      <div>
-                        <h1>Stool</h1>
-                      </div>
-                      <div>
-                        <p>(0)</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between mt-2">
-                      <div>
-                        <h1>Other...</h1>
+                        <h1 className="cursor-pointer">Living Room</h1>
                       </div>
                       <div>
                         <p>(0)</p>

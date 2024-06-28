@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { loadStripe } from "@stripe/stripe-js";
+import Image from "next/image";
 
 interface OrderItem {
   productid: string;
@@ -189,8 +190,11 @@ export default function Page() {
                   </div>
                 ) : (
                   <div className="h-[45vh] overflow-y-scroll">
-                    {data.map((item) => (
-                      <div className="w-full items-center flex justify-center gap-10 mt-10  border-b-[1px] border-[#d8d8d8]">
+                    {data.map((item, index) => (
+                      <div
+                        className="w-full items-center flex justify-center gap-10 mt-10  border-b-[1px] border-[#d8d8d8]"
+                        key={index}
+                      >
                         <div className="flex items-center justify-center gap-3 w-[20%]">
                           <div
                             onClick={() => handleDeleteProduct(item._id)}
@@ -212,9 +216,15 @@ export default function Page() {
                           <Link href={`/pages/product/${item.productid}`}>
                             {" "}
                             <div>
-                              <img
+                              {/* <img
                                 src={item.image}
-                                className="w-[70px] h-[70px] rounded-full	"
+                             
+                              /> */}
+                              <Image
+                                src={item.image}
+                                alt="my-image"
+                                width={100}
+                                height={100}
                               />
                             </div>
                           </Link>
@@ -286,7 +296,7 @@ export default function Page() {
                       ) : (
                         <div>
                           {total.map((item, index) => (
-                            <div>
+                            <div key={index}>
                               <p className="text-[#6a6a6a] text-base font-semibold">
                                 PHP {item.total_all_prices}
                               </p>
@@ -313,7 +323,7 @@ export default function Page() {
                       ) : (
                         <div>
                           {total.map((item, index) => (
-                            <div>
+                            <div key={index}>
                               <p className="text-[#6a6a6a] text-base font-semibold">
                                 PHP {item.total_all_prices}
                               </p>

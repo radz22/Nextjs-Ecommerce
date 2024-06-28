@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import Footer from "@/app/components/Footer";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ProductItem {
   _id: string;
@@ -18,7 +19,7 @@ interface ProductItem {
 }
 export default function Page() {
   const { id } = useParams();
-  const [data, setData] = useState<ProductItem | null>(null);
+  const [data, setData] = useState<ProductItem | any>();
   const [loading, setLoading] = useState<boolean>(true);
   const [count, setCount] = useState<number>(1);
   const [name, setName] = useState<string>("");
@@ -30,7 +31,7 @@ export default function Page() {
   const [totalProduct, setTotalProduct] = useState<number>();
   const [limit, setLimit] = useState<number>(4);
   const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
-
+  const [offsetDefult, setOffsetDefult] = useState<number>(4);
   const handleIncrement = () => {
     setCount((prev) => prev + 1);
   };
@@ -136,13 +137,15 @@ export default function Page() {
 
   const handleSeeMore = () => {
     setOffset(offset + limit);
+    setOffsetDefult((prev) => prev + limit);
   };
 
   const handleSeeLess = () => {
     setOffset(Math.max(0, offset - limit));
+    setOffsetDefult(Math.max(0, offsetDefult - limit));
   };
 
-  console.log(offset, limit);
+  console.log(offset, offsetDefult);
   return (
     <div className="relative">
       <div className="w-full h-auto relative bg-[#f3f3f3]">
@@ -168,7 +171,13 @@ export default function Page() {
               <div className="flex justify-center gap-5 w-full">
                 <div className="px-5 w-6/12	">
                   <div className="w-full">
-                    <img src={data?.image} className="w-full  h-[430px]" />
+                    <Image
+                      src={data?.image}
+                      alt="my-image"
+                      width={1000}
+                      height={1000}
+                      className="w-[90%] h-[430px]"
+                    />
                   </div>
                 </div>
                 <div className="w-6/12	">
@@ -290,9 +299,12 @@ export default function Page() {
                                   }`}
                                 >
                                   <div className="w-full  flex items-center justify-center">
-                                    <img
+                                    <Image
                                       src={item.image}
-                                      className="w-[250px] h-[250px]  object-cover"
+                                      alt="my-image"
+                                      width={250}
+                                      height={250}
+                                      className="object-cover"
                                     />
                                   </div>
                                   <div className="flex items-center justify-center flex-col w-full mt-3">
@@ -361,7 +373,7 @@ export default function Page() {
                 </div>
                 <div className=" mt-10 flex items-center justify-center gap-10">
                   <div>
-                    {offset == totalProduct ? (
+                    {offsetDefult == totalProduct ? (
                       ""
                     ) : (
                       <div
@@ -441,7 +453,12 @@ export default function Page() {
             <div className="flex item-center justify-between   px-20 py-5  w-full">
               <div className="flex items-center gap-5">
                 <div>
-                  <img src={data?.image} className="w-[50px] h-[50px]" />
+                  <Image
+                    src={data?.image}
+                    alt="my-image"
+                    width={50} // Add the appropriate width here
+                    height={50}
+                  />
                 </div>
                 <div>
                   <h1 className="text-[#6a6a6a] text-sm	font-semibold  ">
