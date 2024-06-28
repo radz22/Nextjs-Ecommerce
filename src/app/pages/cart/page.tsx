@@ -22,7 +22,7 @@ interface total {
   _id: string | null;
   total_all_prices: number;
 }
-export default function page() {
+export default function Page() {
   const [data, setData] = useState<OrderItem[]>([]);
   const [total, setTotal] = useState<total[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

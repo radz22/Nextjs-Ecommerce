@@ -16,7 +16,7 @@ interface ProductItem {
   category: string;
   price: number;
 }
-export default function page() {
+export default function Page() {
   const { id } = useParams();
   const [data, setData] = useState<ProductItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);

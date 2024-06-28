@@ -1,15 +1,17 @@
 import React from "react";
-
+import Image from "next/image";
 export default function Footer() {
   return (
     <div className=" bg-[#1c1c1c] h-auto">
-      <div className="flex items-center justify-between gap-4 w-full mt-20 px-20">
+      <div className="flex items-center justify-between gap-4 w-full mt-20 px-20 py-5">
         <div className="w-[25%]">
           <div>
             {" "}
-            <img
+            <Image
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/kayuu-logo-white.svg"
-              className="w-[130px] h-[130px]"
+              alt="my-image"
+              width={130} // Add the appropriate width here
+              height={130}
             />
           </div>
         </div>

@@ -12,7 +12,7 @@ interface ProductItem {
   category: string;
   price: number;
 }
-export default function page() {
+export default function Page() {
   const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
   const [data, setData] = useState<ProductItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

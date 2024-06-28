@@ -1,7 +1,7 @@
 import React from "react";
 import Headers from "@/app/components/Headers";
 import Footer from "@/app/components/Footer";
-export default function page() {
+export default function Page() {
   return (
     <div className="w-full h-auto">
       <div>
