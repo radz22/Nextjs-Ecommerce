@@ -248,7 +248,7 @@ export default function Page() {
                     >
                       <Link href={`/pages/product/${item._id}`}>
                         <div
-                          className={`mt-16 py-2  px-5  h-auto${
+                          className={`mt-16 py-2  px-5  h-[300px]${
                             hoveredItemId == item._id
                               ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300 h-auto"
                               : "shadow shadow-[#ededed]  transition-transform duration-300"
@@ -258,9 +258,9 @@ export default function Page() {
                             <Image
                               src={item.image}
                               alt="my-image"
-                              width={250}
-                              height={250}
-                              className=" object-cover"
+                              width={1000} // Add the appropriate width here
+                              height={1000}
+                              className="h-[150px] w-[200px]"
                             />
                           </div>
                           <div className="flex items-center justify-center flex-col w-full mt-3">
@@ -332,11 +332,6 @@ export default function Page() {
       <div className="w-full mt-24 grid-cols-4	grid place-items-center">
         <div className="relative w-full  ">
           <div className="relative">
-            {/* <img
-              src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/living-room-bg.jpg"
-              className="w-full h-[450px] brightness-50						"
-            /> */}
-
             <Image
               src="https://websitedemos.net/home-decor-04/wp-content/uploads/sites/644/2020/08/living-room-bg.jpg"
               alt="image"
@@ -510,7 +505,7 @@ export default function Page() {
             </div>
           ) : (
             <div>
-              <div className="grid grid-cols-4	 place-items-center w-full]">
+              <div className="grid grid-cols-4	 place-items-center w-full">
                 {data.map((item, index) => (
                   <div
                     key={index}
@@ -520,7 +515,7 @@ export default function Page() {
                   >
                     <Link href={`/pages/product/${item._id}`}>
                       <div
-                        className={`mt-16 py-2  px-5  h-[420px] ${
+                        className={`mt-16 py-2  px-5  h-[300px] ${
                           hoveredItemId == item._id
                             ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300 h-auto"
                             : "shadow shadow-[#ededed]  transition-transform duration-300"
@@ -532,7 +527,7 @@ export default function Page() {
                             alt="my-image"
                             width={1000} // Add the appropriate width here
                             height={1000}
-                            className="w-[250px] h-[250px]  object-cover"
+                            className="h-[150px] w-[200px]"
                           />
                         </div>
                         <div className="flex items-center justify-center flex-col w-full mt-3">

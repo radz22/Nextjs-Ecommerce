@@ -164,7 +164,7 @@ export default function Page() {
                     >
                       <Link href={`/pages/product/${item._id}`}>
                         <div
-                          className={`mt-16 py-2  px-5  h-[420px] ${
+                          className={`mt-16 py-2  px-5 h-[300px]  ${
                             hoveredItemId == item._id
                               ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300 h-auto"
                               : "shadow shadow-[#ededed]  transition-transform duration-300"
@@ -174,9 +174,9 @@ export default function Page() {
                             <Image
                               src={item.image}
                               alt="my-image"
-                              width={250} // Add the appropriate width here
-                              height={250}
-                              className="object-cover"
+                              width={1000} // Add the appropriate width here
+                              height={1000}
+                              className="h-[150px] w-[200px]"
                             />
                           </div>
                           <div className="flex items-center justify-center flex-col w-full mt-3">
@@ -349,7 +349,7 @@ export default function Page() {
                     >
                       <Link href={`/pages/product/${item._id}`}>
                         <div
-                          className={`mt-16 py-2  px-5  h-[420px] ${
+                          className={`mt-16 py-2  px-5  h-[300px] ${
                             hoveredItemId == item._id
                               ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300 h-auto"
                               : "shadow shadow-[#ededed]  transition-transform duration-300"
@@ -359,9 +359,9 @@ export default function Page() {
                             <Image
                               src={item.image}
                               alt="my-image"
-                              width={250} // Add the appropriate width here
-                              height={250}
-                              className="  object-cover"
+                              width={1000} // Add the appropriate width here
+                              height={1000}
+                              className="h-[150px] w-[200px]"
                             />
                           </div>
                           <div className="flex items-center justify-center flex-col w-full mt-3">
@@ -534,7 +534,7 @@ export default function Page() {
                     >
                       <Link href={`/pages/product/${item._id}`}>
                         <div
-                          className={`mt-16 py-2  px-5  h-[420px] ${
+                          className={`mt-16 py-2  px-5  h-[300px]  ${
                             hoveredItemId == item._id
                               ? "shadow-xl shadow-[#8a8a8a]  transition-transform duration-300 h-auto"
                               : "shadow shadow-[#ededed]  transition-transform duration-300"
@@ -544,9 +544,9 @@ export default function Page() {
                             <Image
                               src={item.image}
                               alt="my-image"
-                              width={250} // Add the appropriate width here
-                              height={250}
-                              className=" object-cover"
+                              width={1000} // Add the appropriate width here
+                              height={1000}
+                              className="h-[150px] w-[200px]"
                             />
                           </div>
                           <div className="flex items-center justify-center flex-col w-full mt-3">
