@@ -156,6 +156,18 @@ export default function Page() {
     router.push("/pages/sucess");
   };
 
+  const handleCashOnDelivery = async () => {
+    axios
+      .post("http://localhost:3000/api/cashondelivery", {
+        product: data,
+        status: "to pay",
+      })
+      .then((res) => {
+        console.log(res.data);
+        router.push("/pages/receive");
+      });
+  };
+
   return (
     <div className="w-full">
       <div>
@@ -381,7 +393,7 @@ export default function Page() {
                       <div>
                         <div
                           className="mt-5 text-center py-5"
-                          onClick={handleSucess}
+                          onClick={handleCashOnDelivery}
                         >
                           <button className="text-xl bg-[#EDB932] py-5 w-full  hover:text-white">
                             Purchase

@@ -469,7 +469,7 @@ export default function Page() {
               <div className="flex items-center gap-5">
                 <div>
                   <h1 className="text-[#6a6a6a] text-sm	font-semibold">
-                    PHP {data?.price}
+                    PHP {data?.price * count}
                   </h1>
                 </div>
                 <div className="flex items-center justify-center">

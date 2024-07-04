@@ -193,6 +193,7 @@ export default function Headers() {
                           alt="my-image"
                           width={24} // Add the appropriate width here
                           height={24}
+                          className="rounded-full	"
                         />
                       </div>
                       <div>
@@ -211,9 +212,16 @@ export default function Headers() {
               </div>
               <div>
                 {userNav && (
-                  <div className="absolute top-10 right-5  bg-white w-[120px] h-[100px] px-3 py-3 ">
+                  <div className="absolute top-10 right-0 z-10 bg-white w-[200px] h-[130px] px-3 py-3  flex items-center justify-center flex-col">
                     <div>
                       <button>My Account</button>
+                    </div>
+
+                    <div className="mt-2">
+                      <Link href="/pages/receive">
+                        {" "}
+                        <button>My Purchase</button>
+                      </Link>
                     </div>
                     <div className="mt-2">
                       <button onClick={handleLogout}>Logout</button>

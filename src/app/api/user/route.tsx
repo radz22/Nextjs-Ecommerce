@@ -1,10 +1,10 @@
 "use server";
 
 import UserModel from "../../../../MongooseSchema/AuthenticationSchema";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import dbConnection from "../../../../dbsetup/mongodbsetup";
 
-export async function POST(request: any) {
+export async function POST(request: NextRequest) {
   await dbConnection();
   try {
     const { name, image, provider } = await request.json();
