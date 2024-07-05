@@ -23,7 +23,6 @@ import {
   TEModalBody,
   TEModalFooter,
 } from "tw-elements-react";
-import { boolean } from "zod";
 interface ProductItem {
   _id: string;
   name: string;
@@ -167,8 +166,6 @@ export default function Page() {
       throw new Error(error.message);
     }
   };
-
-  console.log(dataLoading);
 
   return (
     <div className="w-full h-auto ">

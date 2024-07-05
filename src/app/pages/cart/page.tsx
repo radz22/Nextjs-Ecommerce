@@ -32,6 +32,7 @@ export default function Page() {
   const [next, setNext] = useState<string | null>(null);
   const [login, setLogin] = useState<string | null>(null);
   const [selectedOption, setSelectedOption] = useState<string>("");
+
   useEffect(() => {
     const name = Cookies.get("name");
     const log = Cookies.get("login");
@@ -150,10 +151,6 @@ export default function Page() {
     } else if (selectedOption == "option2") {
       setNext("next");
     }
-  };
-
-  const handleSucess = () => {
-    router.push("/pages/sucess");
   };
 
   const handleCashOnDelivery = async () => {

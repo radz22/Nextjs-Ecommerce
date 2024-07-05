@@ -130,9 +130,7 @@ export default function Header() {
                       className="flex items-center justify-center gap-2 "
                       onClick={handleOpen}
                     >
-                      <div>
-                        {/* <img src={image} className="w-6	 h-6 rounded-full		" /> */}
-
+                      <div className="cursor-pointer">
                         <Image
                           src={image}
                           alt="my-image"
@@ -142,7 +140,7 @@ export default function Header() {
                       </div>
                       <div>
                         {" "}
-                        <h1 className="text-white">{name}</h1>
+                        <h1 className="text-white cursor-pointer">{name}</h1>
                       </div>
                     </div>
                   </div>
@@ -156,9 +154,12 @@ export default function Header() {
               </div>
               <div>
                 {userNav && (
-                  <div className="absolute top-10 right-5  bg-white w-[120px] h-[100px] px-3 py-3 ">
+                  <div className="absolute top-10 right-0 z-10 bg-white w-[160px] h-[100px] px-4   flex items-center justify-center flex-col">
                     <div>
-                      <button>My Account</button>
+                      <Link href="/pages/receive">
+                        {" "}
+                        <button>My Purchase</button>
+                      </Link>
                     </div>
                     <div className="mt-2">
                       <button onClick={handleLogout}>Logout</button>

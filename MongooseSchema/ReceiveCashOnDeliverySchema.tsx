@@ -9,6 +9,7 @@ interface receive extends Document {
   price: number;
   quantity: number;
   status: string;
+  payment: string;
   // number: string;
   // provice: string;
   // city: string;
@@ -26,6 +27,8 @@ const receiveSchema = new Schema<receive>(
     price: { type: Number, required: true },
     quantity: { type: Number, required: true },
     status: { type: String, required: true },
+    payment: { type: String, required: true },
+
     // number: { type: String },
     // provice: { type: String },
     // city: { type: String },

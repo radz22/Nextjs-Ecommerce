@@ -145,7 +145,50 @@ export default function Page() {
     setOffsetDefult(Math.max(0, offsetDefult - limit));
   };
 
-  console.log(offset, offsetDefult);
+  const handleOrderHover = async (
+    productid: string,
+    item: string,
+    image: string,
+    price: number
+  ) => {
+    if (login == "true") {
+      try {
+        axios
+          .post(`http://localhost:3000/api/order`, {
+            productid: productid,
+            item: item,
+            user: name,
+            image: image,
+            price: price,
+            quantity: 1,
+          })
+          .then(() => {
+            Swal.fire({
+              title: "Sucess Order",
+              width: 600,
+              padding: "3em",
+              color: "#716add",
+              background: "#fff url(/images/trees.png)",
+              backdrop: `
+              rgba(0,0,123,0.4)
+              url("https://media.tenor.com/xzjlrhYq_lQAAAAj/cat-nyan-cat.gif")
+              left top
+              no-repeat
+            `,
+            });
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong pls login!",
+      });
+    }
+  };
+
   return (
     <div className="relative">
       <div className="w-full h-auto relative bg-[#f3f3f3]">
@@ -332,7 +375,16 @@ export default function Page() {
                                   hoveredItemId == item._id ? "opacity-100" : ""
                                 } transition-opacity duration-300`}
                               >
-                                <div>
+                                <div
+                                  onClick={() =>
+                                    handleOrderHover(
+                                      item._id,
+                                      item.name,
+                                      item.image,
+                                      item.price
+                                    )
+                                  }
+                                >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="1em"

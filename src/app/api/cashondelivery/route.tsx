@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       item: item.item,
       user: item.user,
       image: item.image,
-      price: item.price,
+      price: item.price * item.quantity,
       quantity: item.quantity,
       productid: item.productid,
     }));
@@ -29,6 +29,7 @@ export async function POST(request: NextRequest) {
     const data = items.map((item: any) => ({
       ...item,
       status: status,
+      payment: "cashondelivery",
     }));
     const create = await receiveModel.create(data);
     if (!create) {

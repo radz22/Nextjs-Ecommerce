@@ -17,6 +17,7 @@ interface receive {
   quantity: number;
   status: string;
   productid: string;
+  payment: string;
 }
 
 export default function page() {
@@ -206,7 +207,11 @@ export default function page() {
                                   <div>
                                     <h1 className="text-base">{item.item}</h1>
                                   </div>
-
+                                  <div>
+                                    <p className="text-sm font-normal text-[#6a6a6a]  mt-2">
+                                      {item.payment}
+                                    </p>
+                                  </div>
                                   <div>
                                     <p className="text-sm mt-2">
                                       x{item.quantity}
@@ -274,7 +279,11 @@ export default function page() {
                                   <div>
                                     <h1 className="text-base">{item.item}</h1>
                                   </div>
-
+                                  <div>
+                                    <p className="text-sm font-normal text-[#6a6a6a]  mt-2">
+                                      {item.payment}
+                                    </p>
+                                  </div>
                                   <div>
                                     <p className="text-sm mt-2">
                                       x{item.quantity}
@@ -342,7 +351,11 @@ export default function page() {
                                   <div>
                                     <h1 className="text-base">{item.item}</h1>
                                   </div>
-
+                                  <div>
+                                    <p className="text-sm font-normal text-[#6a6a6a]  mt-2">
+                                      {item.payment}
+                                    </p>
+                                  </div>
                                   <div>
                                     <p className="text-sm mt-2">
                                       x{item.quantity}
@@ -410,7 +423,11 @@ export default function page() {
                                   <div>
                                     <h1 className="text-base">{item.item}</h1>
                                   </div>
-
+                                  <div>
+                                    <p className="text-sm font-normal text-[#6a6a6a]  mt-2">
+                                      {item.payment}
+                                    </p>
+                                  </div>
                                   <div>
                                     <p className="text-sm mt-2">
                                       x{item.quantity}

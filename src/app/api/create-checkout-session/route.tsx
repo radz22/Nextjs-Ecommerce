@@ -1,16 +1,22 @@
 "use server";
 import dbConnection from "../../../../dbsetup/mongodbsetup";
 import { NextResponse, NextRequest } from "next/server";
-import stripe from "stripe";
-const stripeInstance = new stripe(
-  "sk_test_51PVrHLEpyR2QvynpzxBSbh9HZasWyccs6unQkmtVZ2fiBXvpCTo12i0a2o1iGDBBXteXzq7ii5l3QKenFIkewpz000icrBx4JW"
-);
+import { newStripes } from "@/app/components/stripe";
+interface receive {
+  item: string;
+  user: string;
+  image: string;
+  price: number;
+  quantity: number;
+  productid: string;
+}
+
 export async function POST(request: NextRequest) {
   await dbConnection();
   try {
     const { product } = await request.json();
-    console.log(product);
-    const session = await stripeInstance.checkout.sessions.create({
+
+    const session = await newStripes.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: product.map((item: any) => ({
         price_data: {
@@ -24,7 +30,19 @@ export async function POST(request: NextRequest) {
         quantity: item.quantity,
       })),
       mode: "payment",
-      success_url: "http://localhost:3000/pages/sucess",
+      metadata: {
+        items: JSON.stringify(
+          product.map((item: any) => ({
+            item: item.item,
+            productid: item.productid,
+            price: item.price,
+            quantity: item.quantity,
+            image: item.image,
+            user: item.user,
+          }))
+        ),
+      },
+      success_url: "http://localhost:3000/pages/receive",
       cancel_url: "http://localhost:3000/pages/cart",
     });
 
